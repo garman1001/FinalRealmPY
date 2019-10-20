@@ -11,6 +11,11 @@ from pathlib import Path
 filePath = Path(__file__).parent
 loadfolder = lambda num, path : sys.path.append(num, path)
 
+# Import Menus
+loadfolder(1, f'{filePath}/Assets/Menus')
+from Menus import Help, Login, CreateAccount, GameMenu
+
+"""
 # Imports Classes
 loadfolder(1, f'{filePath}/Assets/Classes/')
 from Classes import Entities
@@ -27,18 +32,49 @@ from Shops import WeaponShop
 loadfolder(3, f'{filePath}/Assets/Menus/')
 from Menus import Help
 from Menus import TitleScreen
+"""
 
-profile_folder = f"{filePath}/Profiles"
+def menu():
+    os.system('clear')
+    print('#############################')
+    print('#                           #')
+    print('#  Welcome to Final Realm!  #')
+    print('#                           #')
+    print('#############################')
+    print('         - Log in -           ')
+    print('        - New Game -         ')
+    print('          - Help -           ')
+    print('          - Quit -           ')
+    print('   Copyright 2019 RoyConn    \n')
+    selections()
 
-def create_account():
-    username = input("What would you like your username to be?\n\n> ")
-    open(f"{profilePath}/{username}.json", "w")
+def selections():
+    options = ["play", "help", "log in", "new game", "quit"]
+
+    option = input("> ")
+    if option.lower() == options[0]:
+        GameMenu.menu() # placeholder until written
+    elif option.lower() == options[1]:
+        Help.menu()
+    elif option.lower() == options[2]:
+        Login.menu()
+    elif option.lower() == options[3]:
+        CreateAccount.menu()
+    elif option.lower() == options[4]:
+        exit()
+    while option.lower() not in options:
+        print("Please enter a valid command.")
+        option = input("> ")
+        if option.lower() == options[0]:
+            GameMenu.menu() # placeholder until written
+        elif option.lower() == options[1]:
+            Help.menu()
+        elif option.lower() == options[2]:
+            Login.menu()
+        elif option.lower() == options[3]:
+            CreateAccount.menu()
+        elif option.lower() == options[4]:
+            exit()
 
 
-
-def start_game():
-    print("In development!")
-    exit()
-
-
-title_screen()
+menu()
