@@ -1,0 +1,10 @@
+# IDEA
+.idea/
+
+# Pycache
+__pycache__/
+Assets/__pycache__/
+Assets/Classes/__pycache__/
+Assets/Regions/__pycache__/
+Assets/Shops/__pycache__/
+Profiles/__pycache__/
