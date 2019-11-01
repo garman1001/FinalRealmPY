@@ -7,7 +7,7 @@ import sys
 import random
 import json
 import importlib
-import Assets.Menus.Help as Help
+import Assets.Menus.Game.Help as Help
 from pathlib import Path
 
 filePath = Path(__file__).parent

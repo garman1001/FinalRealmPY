@@ -11,3 +11,5 @@ Profiles/__pycache__/
 
 # VS Code
 .vscode/
+
+snapcraft.yml

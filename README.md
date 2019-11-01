@@ -18,19 +18,25 @@ as many new ones!
 - Realmbank
 - Smuggler
 - Stronghold
-- Quest Hall (Working!)
+- Quest Hall
 - Wander Gielinor (Now called "The Wild")
 
 ## New Features & Plans
 
-- Background story at profile initialization
-
 - The Wild now has randomized regions
-    - Villiages
-    - Ekaver (Capital)
-    - (Monster Attacks)
+  - Villiages
+  - Ekaver (Capital)
+  - (Monster Attacks)
+  - (Bandit Attacks)
 
 - Magic & Status Effects
+
+- Provide binaries for the following:
+  - Snaps
+  - Flatpak
+  - Docker
+  - DEB, RPM
+  - EXE (Windows) (NOT GUARANTEED)
 
 - More coming soon!
 
