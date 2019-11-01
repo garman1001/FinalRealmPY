@@ -1,5 +1,12 @@
 import os
-import TitleScreen
+import sys
+from pathlib import Path
+filePath = Path(__file__).parent.parent.parent
+loadfolder = lambda num : sys.path.append(num)
+
+# Import Menus
+loadfolder(f'{filePath}')
+import main
 
 def menu():
     os.system('clear')
@@ -19,7 +26,7 @@ def selections():
     option = ['y', 'n', 'yes', 'no']
     shell = input('> ')
     if shell.lower() == option[0] or shell.lower() == option[2]:
-        TitleScreen.menu()
+        main.menu()
     elif shell.lower() == option[2] or shell.lower() == option[3]:
         menu()
     while shell.lower() not in option:
@@ -29,7 +36,12 @@ def selections():
         option = ['y', 'n', 'yes', 'no']
         shell = input('> ')
         if shell.lower() == option[0] or shell.lower() == option[2]:
-            TitleScreen.menu()
+            main.menu()
         elif shell.lower() == option[1] or shell.lower() == option[3]:
             menu()
     selections()
+
+class helpmenu:
+    def __init__(self):
+        return
+    

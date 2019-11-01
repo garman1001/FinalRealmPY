@@ -8,3 +8,6 @@ Assets/Classes/__pycache__/
 Assets/Regions/__pycache__/
 Assets/Shops/__pycache__/
 Profiles/__pycache__/
+
+# VS Code
+.vscode/
