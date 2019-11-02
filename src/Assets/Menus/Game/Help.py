@@ -1,12 +1,6 @@
 import os
-import sys
-from pathlib import Path
-filePath = Path(__file__).parent.parent.parent
-loadfolder = lambda num : sys.path.append(num)
+from src import main
 
-# Import Menus
-loadfolder(f'{filePath}')
-import main
 
 def menu():
     os.system('clear')
@@ -22,6 +16,7 @@ def menu():
     print('\nWould you like to return to the help menu?\n')
     selections()
 
+
 def selections():
     option = ['y', 'n', 'yes', 'no']
     shell = input('> ')
@@ -29,19 +24,15 @@ def selections():
         main.menu()
     elif shell.lower() == option[2] or shell.lower() == option[3]:
         menu()
-    while shell.lower() not in option:
+    else:
+        while shell.lower() not in option:
 
-        print('Please enter a valid answer.\n')
+            print('Please enter a valid answer.\n')
 
-        option = ['y', 'n', 'yes', 'no']
-        shell = input('> ')
-        if shell.lower() == option[0] or shell.lower() == option[2]:
-            main.menu()
-        elif shell.lower() == option[1] or shell.lower() == option[3]:
-            menu()
+            option = ['y', 'n', 'yes', 'no']
+            shell = input('> ')
+            if shell.lower() == option[0] or shell.lower() == option[2]:
+                main.menu()
+            elif shell.lower() == option[1] or shell.lower() == option[3]:
+                menu()
     selections()
-
-class helpmenu:
-    def __init__(self):
-        return
-    

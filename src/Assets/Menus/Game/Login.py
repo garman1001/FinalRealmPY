@@ -8,4 +8,3 @@ from pathlib import Path
 
 def menu():
     return
-

@@ -1,9 +1,9 @@
 import os
-import yaml
+from ruamel.yaml import YAML
 from pathlib import Path
 from src import main
 
-
+yaml = YAML(typ='safe')
 path = Path(__file__).parent.parent.parent
 profile_path = f'{path}/Profiles/'
 

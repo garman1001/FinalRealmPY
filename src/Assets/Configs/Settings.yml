@@ -1,0 +1,23 @@
+################################# BASIC SETTINGS #################################
+
+permissions:  # Permissions per account level
+  admin: # Admin Account
+    perm_level: 3
+    allow_admin_console: True
+    allow_profile_delete: True
+    allow_profile_disable: True
+    allow_game_lock: True
+
+  player: # Players w/ profile
+    perm_level: 2
+    allow_admin_console: False
+    allow_profile_delete: True
+    allow_profile_disable: True
+    allow_game_lock: False
+
+  guest: # Guests (No profile)
+    perm_level: 1
+    allow_admin_console: False
+    allow_profile_delete: False
+    allow_profile_disable: False
+    allow_game_lock: False

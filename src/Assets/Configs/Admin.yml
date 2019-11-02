@@ -1,0 +1,6 @@
+################################# ADMIN CONFIG #################################
+
+admin:
+  login:
+    username: admin
+    password: 33109A
