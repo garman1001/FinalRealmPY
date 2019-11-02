@@ -1,6 +1,9 @@
 # IDEA
 .idea/
 
+.git/
+.venv/
+
 # Pycache
 __pycache__/
 Assets/__pycache__/
