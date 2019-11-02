@@ -27,13 +27,13 @@ command = lambda com: os.system(f"{com}")  # Runs a command in the Linux console
 
 def menu():
     clear()
-    command(f"cp {path}/Assets/Configs/Templates/player-template.yml {profile_path}")
+    command(f"cp {path}/Configs/Templates/player-template.yml {profile_path}")
     username = input("Enter a username:\n\n> ")
     command(f"mv {profile_path}/player-template.yml {profile_path}/{username}.yml")
     profile = yaml_loader(f"{profile_path}/{username}.yml")
 
     password = input("Enter a password:\n\n> ")
-    profile['player.settings.password'] = password
+    profile['player']['settings']['password'] = password
 
     yaml_dump(f"{profile_path}/{username}.yml", profile)
 
