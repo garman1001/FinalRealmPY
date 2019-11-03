@@ -1,0 +1,9 @@
+####################### Basic Info #######################
+
+shop:
+  name: "Legend's Store"
+  open: True  # Whether the store can be accessed
+  allow_sell: True  # Whether the store allows a player to sell items
+
+####################### Inventory #######################
+  inventory:

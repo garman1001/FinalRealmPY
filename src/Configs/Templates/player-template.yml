@@ -46,41 +46,16 @@ player:
 ####################### Equipment #######################
 
   armor:
-    helmet:
-      name: Wooden # Name
-      type: Basic  # Basic (wood), Normal, Legendary
-      resistance: 5  # How much damage is mitigated per round
-      durability: 100  # Maximum wear the armor can take
-      wear: 0  # How much wear the armor has
-      broken: False  # Whether the armor can be used due to wear
-
-    chestplate:
-      name: Wooden # Name
-      type: Basic  # Basic (wood), Normal, Legendary
-      resistance: 5  # How much damage is mitigated per round
-      durability: 100  # Maximum wear the armor can take
-      wear: 0  # How much wear the armor has
-      broken: False  # Whether the armor can be used due to wear
-
-    leggings:
-      name: Wooden # Name
-      type: Basic  # Basic (wood), Normal, Legendary
-      resistance: 5  # How much damage is mitigated per round
-      durability: 100  # Maximum wear the armor can take
-      wear: 0  # How much wear the armor has
-      broken: False  # Whether the armor can be used due to wear
-
-    boots:
-      name: Wooden # Name
-      type: Basic  # Basic (wood), Normal, Legendary
-      resistance: 5  # How much damage is mitigated per round
-      durability: 100  # Maximum wear the armor can take
-      wear: 0  # How much wear the armor has
-      broken: False  # Whether the armor can be used due to wear
+    name: 'wooden' # Name
+    type: 'basic'  # Basic (wood), Normal, Legendary
+    resistance: 5  # How much damage is mitigated per round
+    durability: 100  # Maximum wear the armor can take
+    wear: 0  # How much wear the armor has
+    broken: False  # Whether the armor can be used due to wear
   
   weapon:
-    name: Bronze
-    type: Basic  # Basic (bronze), Normal, Legendary
+    name: 'wooden'
+    type: 'basic'  # Basic (bronze), Normal, Legendary
     sharpness: 30  # Maximum damage that can be dealt each round
     durability: 100  # Maximum wear the weapon can take
     wear: 0  # How much wear the weapon has

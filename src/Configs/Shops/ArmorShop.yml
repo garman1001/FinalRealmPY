@@ -1,0 +1,38 @@
+####################### Basic Info #######################
+
+shop:
+  name: ''
+  open: True  # Whether the store can be accessed
+  allow_sell: False  # Whether the store allows a player to sell items
+
+####################### Inventory #######################
+  inventory:
+    basic:
+      id: 1  # Position in the store
+      price: 20
+      resistance: 10  # Maximum damage the armor mitigates per round
+      durability: 100  # Maximum wear an armor can take
+
+    bronze:
+      id: 2
+      price: 50
+      resistance: 20
+      durability: 100
+
+    iron:
+      id: 3
+      price: 100
+      resistance: 30
+      durability: 150
+
+    damascus_steel:
+      id: 4
+      price: 200
+      resistance: 50
+      durability: 200
+
+    enchanted_steel:
+      id: 5
+      price: 300
+      resistance: 70
+      durability: 100
