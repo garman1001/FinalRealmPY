@@ -2,7 +2,7 @@ import sys
 import cmd
 import os
 import random
-import yaml
+from ruamel.yaml import YAML
 from pathlib import Path
 
 
