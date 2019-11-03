@@ -7,19 +7,19 @@ from pathlib import Path
 filePath = Path(__file__).parent
 
 
-def border(title):
+def header(title):  # Draws a border around the specified title
     length = len(title)
     string = '#' * length
     string2 = string + ('#' * 4)
     whitelength = ' ' * length
     whitelength2 = f'# {whitelength} #'
     text = f'# {title} #'
-    return f"{string2}\n{whitelength2}\n{text}\n{whitelength2}\n{string2}"
+    print(f"{string2}\n{whitelength2}\n{text}\n{whitelength2}\n{string2}")
 
 
 def main_menu():
     os.system('clear')
-    print(border('Welcome to Final Realm!'))
+    header('Welcome to Final Realm!')
     print()
     print('1. Log in')
     print('2. Create Account')
@@ -59,7 +59,7 @@ def main_menu():
 
 def help_menu():
     os.system('clear')
-    print(border("Final Realm | Help"))
+    header("Final Realm | Help")
     print('- Use up, down, left, right to move')
     print('- Type your commands to do them')
     print('- Use "look" to inspect something')
@@ -86,11 +86,11 @@ def help_menu():
     help_menu()
 
 
-def login_menu():
+def login_menu():  # To Be Developed w/ YAML support
     return
 
 
-def create_account():
+def create_account():  # To Be Developed w/ YAML support
     return
 
 
