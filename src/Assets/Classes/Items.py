@@ -16,12 +16,14 @@ class Armor:
         self.leggings.damage = 0
         self.boots.damage = 0
 
+
 class Weapon:
     def __init__(self):
         self.price = 0
         self.durability = 0
         self.damage = 0
         self.attackdamage = 0
+
 
 class Food:
     def __init__(self):
@@ -30,6 +32,7 @@ class Food:
         self.description = ""
         self.restorepoints = 0
         self.saturation = 0
+
 
 class Item:
     def __init__(self):

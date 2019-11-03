@@ -11,6 +11,7 @@ class player:
         self.weapon = None
         self.inventory = []
 
+
 class NPC:
     def __init__(self):
         self.name = ''
@@ -21,7 +22,8 @@ class NPC:
         self.item = None
         self.price = 0
         self.quantity = 0
-    
+
+
 class Monster:
     def __init__(self):
         self.name = ''
