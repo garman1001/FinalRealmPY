@@ -1,23 +1,34 @@
 ################################# BASIC SETTINGS #################################
 
 permissions:  # Permissions per account level
-  admin: # Admin Account
-    perm_level: 3
-    allow_admin_console: True
+  level_3:  # Admin Level
+    allow_admin_console: True  # Redundant but being used for conformity
     allow_profile_delete: True
+    allow_profile_enable: True
     allow_profile_disable: True
     allow_game_lock: True
+    allow_gameplay: False
 
-  player: # Players w/ profile
-    perm_level: 2
-    allow_admin_console: False
+  level_2:  # Player Level
+    allow_admin_console: True  # You still need to login, but this gives you access to the login page
     allow_profile_delete: True
+    allow_profile_enable: True
     allow_profile_disable: True
     allow_game_lock: False
+    allow_gameplay: True
 
-  guest: # Guests (No profile)
-    perm_level: 1
+  level_1:  # Guest Level
     allow_admin_console: False
     allow_profile_delete: False
+    allow_profile_enable: False
     allow_profile_disable: False
     allow_game_lock: False
+    allow_gameplay: True
+
+  level_0:  # Disabled Level
+    allow_admin_console: False
+    allow_profile_delete: False
+    allow_profile_enable: True
+    allow_profile_disable: False
+    allow_game_lock: False
+    allow_gameplay: False

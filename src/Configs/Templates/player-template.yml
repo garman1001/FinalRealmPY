@@ -2,6 +2,7 @@
 
 player:
   name:  # Username
+  perm_level: 'level_2'  # See Settings.yaml:permissions
   money: 0  # Player Balance
 
   level: 0  # Overall player level
@@ -13,7 +14,7 @@ player:
 
   monsters_defeated: 0  # For use with Quest Hall
   stronghold_defeats: 0  # For use with Quest Hall
-  
+
 ####################### Status Effects #######################
 
   status_effects:
@@ -21,15 +22,15 @@ player:
     nausea:
       active: False
       damage: 5  # Damage dealt per round
-    
+
     poison:
       active: False
       damage: 10  # Damage dealt per round
-    
+
     necromancy:
       active: False
       damage: 30  # Damage dealt per round
-    
+
     # Positive Effects
     rehydration:
       active: False
@@ -38,7 +39,7 @@ player:
     healing:
       active: False
       newhp: 10  # Damage dealt per round
-    
+
     resurrection:
       active: False
       newhp: 30  # Damage dealt per round
@@ -48,11 +49,11 @@ player:
   armor:
     name: 'wooden' # Name
     type: 'basic'  # Basic (wood), Normal, Legendary
-    resistance: 5  # How much damage is mitigated per round
+    resistance: 10  # How much damage is mitigated per round
     durability: 100  # Maximum wear the armor can take
     wear: 0  # How much wear the armor has
     broken: False  # Whether the armor can be used due to wear
-  
+
   weapon:
     name: 'wooden'
     type: 'basic'  # Basic (bronze), Normal, Legendary
@@ -98,13 +99,13 @@ player:
     drops:
       fur:
         quantity: 0
-      
+
       horns:
         quantity: 0
-      
+
       crystal:
         quantity: 0
-      
+
       orbs:
         quantity: 0
 
@@ -130,32 +131,32 @@ player:
     thieving:
       level: 0
       xp: 0
-  
+
 ####################### Quests #######################
 
   quests:
-    
+
     monsters: # Number of monsters defeated
       one-hundred:
         completed: False
 
       two-hundred:
         completed: False
-    
+
     levels: # Reached level #
       ten:
         completed: False
 
       thirty:
         completed: False
-      
+
       fifty:
         completed: False
-    
+
     stronghold: # Whether the stronghold been defeated a certain number of times
       defeated-one:
         completed: False
-      
+
       defeated-five:
         completed: False
 

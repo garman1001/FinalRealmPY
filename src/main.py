@@ -3,6 +3,7 @@
 
 import os
 from pathlib import Path
+from src.Assets.Menus.GameMenu import *
 
 filePath = Path(__file__).parent
 
@@ -33,7 +34,7 @@ def main_menu():
     option = input("> ")
     option = str(option)
     if option == options[0]:
-        login_menu()
+        game_menu()
     elif option == options[1]:
         create_account()
     elif option == options[2]:
@@ -54,16 +55,13 @@ def main_menu():
                 help_menu()
             elif option2 == options[3]:
                 exit()
-    main_menu()
 
 
 def help_menu():
     os.system('clear')
     header("Final Realm | Help")
-    print('- Use up, down, left, right to move')
-    print('- Type your commands to do them')
-    print('- Use "look" to inspect something')
-    print('- Good luck and have fun!')
+    print('- Type in the number option given to perform an action')
+    print('- Don\'t die')
     print('\nWould you like to return to the help menu? y/n\n')
 
     option = ['y', 'n', 'yes', 'no']
@@ -83,7 +81,6 @@ def help_menu():
                 main_menu()
             elif shell.lower() == option[1] or shell.lower() == option[3]:
                 help_menu()
-    help_menu()
 
 
 def login_menu():  # To Be Developed w/ YAML support

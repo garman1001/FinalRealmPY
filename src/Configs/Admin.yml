@@ -2,5 +2,9 @@
 
 admin:
   login:
-    username: admin
+    username: admin  # Needed to access admin console
     password: 33109A
+
+  profile:
+    name: admin
+    perm_level: level_3  # See Settings.yaml:permissions

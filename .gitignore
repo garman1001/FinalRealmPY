@@ -2,7 +2,7 @@
 .idea/
 
 .git/
-.venv/
+venv/
 
 # Pycache
 __pycache__/
