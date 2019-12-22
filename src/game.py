@@ -188,8 +188,10 @@ def login_menu():
     username = prompt("Username:")
 
     profiles = os.listdir(profile_dir)
+    global user_file
     user_file = f"{username}.yml"
     prof = f"{profile_dir}/{user_file}"
+
     if user_file in profiles:
 
         password = prompt("Password")
@@ -220,17 +222,34 @@ def login_menu():
 
         else:
             print("Incorrect password.")
-            main_menu()
+
+            ans = str(prompt("Return to menu? y/n").lower())
+
+            actions = {
+                'y': main_menu,
+                'yes': main_menu,
+                'n': exit,
+                'no': exit
+            }
+
+            if ans in actions.keys():
+                actions[ans]()
+            else:
+                while ans not in actions.keys():
+                    ans = prompt("Invalid choice. Return to menu? y/n")
+
+                    if ans in actions.keys():
+                        actions[ans]()
     else:
         print("Account does not exist.")
-        ans = prompt("Return to menu? y/n").lower()
+        ans = prompt("Create an account? y/n").lower()
         ans = str(ans)
 
         actions = {
-            'y': main_menu,
-            'yes': main_menu,
-            'n': exit,
-            'no': exit
+            'y': create_account,
+            'yes': create_account,
+            'n': main_menu,
+            'no': main_menu
         }
 
         if ans in actions.keys():
@@ -280,7 +299,7 @@ def create_account():
 
         print("Account created!")
 
-        ans = prompt('\nWould you like to return to the help menu? y/n').lower()
+        ans = prompt('\nWould you like to return to the main menu? y/n').lower()
 
         actions = {
             'y': main_menu,
@@ -306,8 +325,9 @@ def game_menu():
     print()
     print("Stats:")
     print(f"- User: {player.name}")
-    print(f"- Balance: {player.money}")
+    print(f"- Money: ${player.money}")
     print(f"- HP: {player.hp}")
+    print(f"- MP: {player.mp}")
     print("\n")
     print("1. Wander the Wild\n")
     print("2. Skill Plot\n")
@@ -320,7 +340,7 @@ def game_menu():
     print("9. Quest Hall\n")
     print("10. The Stronghold\n")
     print("\n")
-    print("100. Settings")
+    print("100. Settings\n")
     print("101. Logout\n\n")
 
     ans = str(prompt("Choose an option"))
@@ -390,7 +410,58 @@ def stronghold():
 
 
 def settings():
-    pass
+    
+    clearscr()
+    header("Settings")
+
+    print("1. Delete Account\n")
+    print("2. Exit\n")
+
+    ans = str(prompt("Choose an option:"))
+
+    actions = {
+        '1': delete_account_prompt,
+        '2': game_menu
+    }
+
+    if ans in actions.keys():
+
+        actions[ans]()
+    
+    else:
+        while ans not in actions.keys():
+            ans = str(prompt("Invalid choice. Choose an option:"))
+
+            if ans in actions.keys():
+                
+                actions[ans]()
+
+
+def delete_account_prompt():
+
+    clearscr()
+    header("Account Deletion")
+    ans = str(prompt("Are you sure you want to delete your account? y/n").lower())
+
+    actions = {
+
+        'y': delete_acc,
+        'yes': delete_acc,
+        'n': game_menu,
+        'no': game_menu
+
+    }
+
+    if ans in actions.keys():
+
+        actions[ans]()
+
+    else:
+        game_menu()
+
+def delete_acc():
+    os.remove(f"{profile_dir}/{user_file}")
+    main_menu()
 
 
 try:

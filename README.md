@@ -34,14 +34,52 @@ as many new ones!
 - Provide binaries for the following:
   - Snaps
   - Flatpak
-  - Docker
   - DEB, RPM
-  - EXE (Windows) (NOT GUARANTEED)
 
 - More coming soon!
 
-To run, use the following command in the same directory as the file `main`.
+To run, use the following command in root directory, not `src`.
 
-`python3 main.py`
+`pipenv run game`
 
 Keep in mind, if you are not using a point release, then parts of the game might break or be missing.
+
+# Checklist
+
+[x] Accounts
+    [x] Login
+    [x] Create
+    [x] Delete
+
+[ ] Combat
+    [ ] Item use (food, pots)
+    [ ] Monster/Bandit Generation
+
+[ ] Inventory Support
+
+[ ] Wild
+    [ ] Monster Attacks
+    [ ] Bandit Attacks
+    [ ] Ekaver
+    [ ] Villiages
+
+[ ] Stores
+    [ ] Trading Post
+    [ ] Weapons Shop
+    [ ] Armor Shop
+    [ ] Legends Store
+    [ ] Max's Shop
+
+[ ] Economy
+    [ ] Skill Plot
+    [ ] Bank
+
+[ ] Misc
+    [ ] Stronghold
+    [ ] Smuggler
+
+[ ] Binaries
+    [ ] Snap
+    [ ] Flatpak
+    [ ] DEB
+    [ ] RPM
