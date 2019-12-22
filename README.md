@@ -50,9 +50,11 @@ Keep in mind, if you are not using a point release, then parts of the game might
     - [x] Login
     - [x] Create
     - [x] Delete
+    - [x] Loading
+    - [x] Saving
 
 - [ ] Combat
-    - [ ] Item use (food, pots)
+    - [ ] Item use
     - [ ] Monster/Bandit Generation
 
 - [ ] Inventory Support
@@ -72,7 +74,7 @@ Keep in mind, if you are not using a point release, then parts of the game might
 
 - [ ] Economy
     - [ ] Skill Plot
-    - [ ] Bank
+    - [x] Bank
 
 - [ ] Misc
     - [ ] Stronghold

@@ -2,8 +2,10 @@
 # Roy Conn
 
 import os
+import time
 from ruamel.yaml import YAML
 from pathlib import Path
+
 
 filePath = Path(__file__).parent
 profile_dir = f"{filePath}/Profiles"
@@ -437,7 +439,90 @@ def max_shop():  # To be developed
 
 
 def bank():  # To be developed
-    pass
+    
+    clearscr()
+    header("Bank")
+    print("")
+    print(f"Vault 1 | ${player.bank['one']}")
+    print(f"Vault 2 | ${player.bank['two']}")
+    print(f"Vault 3 | ${player.bank['three']}")
+    print(f"Vault 4 | ${player.bank['four']}")
+    print(f"Vault 5 | ${player.bank['five']}")
+    print(f"Each vault is limited to $1M.")
+    print(f"\nBalance: ${player.money}")
+    print("\n")
+    print("1. Deposit")
+    print("2. Withdraw")
+    print("3. Exit\n")
+    ans = str(prompt("Choose an option."))
+
+    if ans == '1' or ans == '2':
+
+        bankv = str(prompt("\nWhich vault? 1/2/3/4/5"))
+
+        vaults = {'1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five'}
+        
+        if bankv in vaults.keys():
+            amount = int(prompt("\nHow much?"))
+
+            if ans is '1':
+
+                if player.money >= amount:
+
+                    if amount <= 1000000 and player.bank[vaults[bankv]] + amount <= 1000000:
+
+                        player.bank[vaults[bankv]] += amount
+                        player.money -= amount
+                        bank()
+                    
+                    else:
+                        
+                        print("You are trying to deposit too much money!")
+                        pause()
+                        bank()
+                else:
+
+                    print("\nYou do not have enough to deposit!")
+                    pause()
+                    bank()
+            
+            elif ans is '2':
+
+                if player.bank[vaults[bankv]] >= amount:
+
+                    if amount <= 1000000 and player.bank[vaults[bankv]] - amount >= 0:
+                    
+                        player.bank[vaults[bankv]] -= amount
+                        player.money += amount
+                        bank()
+                    
+                    else:
+
+                        print("You are trying to withdraw too much money!")
+                        pause()
+                        bank()
+                    
+                
+                else:
+
+                    print("\nYou do not have enough to withdraw!")
+                    pause()
+                    bank()
+        else:
+
+            print("Invalid vault!")
+            pause()
+            bank()
+
+    elif ans == '3':
+        
+        game_menu()
+
+    else:
+
+        print("Invalid option...")
+        pause()
+        bank()
 
 
 def quest_hall():  # To be developed
@@ -508,6 +593,7 @@ def logout():
 clearscr = lambda: os.system('clear')
 command = lambda commander: os.system(f"{commander}")
 prompt = lambda prompter: str(input(f"{prompter}\n\n> "))
+pause = lambda: time.sleep(5)
 
 def save_account():
 
