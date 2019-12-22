@@ -438,7 +438,7 @@ def max_shop():  # To be developed
     pass
 
 
-def bank():  # To be developed
+def bank():
     
     clearscr()
     header("Bank")
@@ -524,9 +524,44 @@ def bank():  # To be developed
         pause()
         bank()
 
+def quest_hall():
 
-def quest_hall():  # To be developed
-    pass
+    determine_completed_quests()
+    
+    clearscr()
+
+    header("Quest Hall")
+    print("\n")
+    print("[ Monsters ]")
+    print(f"1. 100 Defeats: {determine_completed(player.quests['monsters']['one-hundred'])}")
+    print(f"2. 200 Defeats: {determine_completed(player.quests['monsters']['two-hundred'])}")
+    print()
+    print()
+    print("[ Levels ]")
+    print(f"1. Level 10: {determine_completed(player.quests['levels']['ten'])}")
+    print(f"2. Level 30: {determine_completed(player.quests['levels']['thirty'])}")
+    print(f"3. Level 50: {determine_completed(player.quests['levels']['fifty'])}")
+    print()
+    print()
+    print(f"[ Stronghold ]")
+    print(f"1. 1 Defeat: {determine_completed(player.quests['stronghold']['defeated-one'])}")
+    print(f"2. 5 Defeats: {determine_completed(player.quests['stronghold']['defeated-five'])}")
+    
+    ans = str(prompt("\nReturn to menu? y/n").lower())
+    actions = {
+        'y': game_menu,
+        'yes': game_menu,
+        'n': quest_hall,
+        'no': quest_hall
+    }
+
+    if ans in actions.keys():
+
+        actions[ans]()
+    
+    else:
+        
+        quest_hall()
 
 
 def stronghold():  # To be developed
@@ -699,6 +734,7 @@ def save_account():
 
     ######################################################
 
+
 def load_account():
 
     with open(f"{profile_dir}/{user_file}", "r") as f:
@@ -800,6 +836,34 @@ def load_account():
     player.bank['five'] = bank['five']
 
     ######################################################
+
+
+def determine_completed(quest):
+
+    if quest == True:
+        return "Complete"
+    else:
+        return "Incomplete"
+
+
+def determine_completed_quests():
+
+    if player.monsters_defeated >= 100:
+        player.quests['monsters']['one-hundred'] = True
+    if player.monsters_defeated >= 200:
+        player.quests['monsters']['two-hundred'] = True
+
+    if player.level >= 10:
+        player.quests['levels']['ten'] = True
+    if player.level >= 30:
+        player.quests['levels']['thirty'] = True
+    if player.level >= 50:
+        player.quests['levels']['fifty'] = True
+    
+    if player.stronghold_defeats >= 1:
+        player.quests['stronghold']['defeated-one'] = True
+    if player.stronghold_defeats >= 5:
+        player.quests['stronghold']['defeated-five'] = True
 
 def header(title):  # Draws a border around the specified title
 

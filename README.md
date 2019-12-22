@@ -57,7 +57,7 @@ Keep in mind, if you are not using a point release, then parts of the game might
     - [ ] Item use
     - [ ] Monster/Bandit Generation
 
-- [ ] Inventory Support
+- [x] Inventory Support
 
 - [ ] Wild
     - [ ] Monster Attacks
@@ -77,6 +77,7 @@ Keep in mind, if you are not using a point release, then parts of the game might
     - [x] Bank
 
 - [ ] Misc
+    - [x] Quest Hall
     - [ ] Stronghold
     - [ ] Smuggler
 
