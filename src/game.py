@@ -185,16 +185,36 @@ def login_menu():
     clearscr()
     header("Login")
     username = prompt("Username:")
-    password = prompt("Password")
 
     profiles = os.listdir(f"{filePath}/Profiles")
-    file = f"{username}.yml"
-    if file in profiles:
-        profile = yaml.load(file)
+    f = f"{username}.yml"
+    if f in profiles:
 
-        if password == profile['settings']['password']:
+        password = prompt("Password")
+
+        with open(f) as fd:
+            global profile
+            profile = yaml.load(fd)
+
+        if password == profile['player']['settings']['password']:
+            global player
             player = Player
-            game_menu(player)
+            pprof = profile['player']
+
+            player.perm_level = pprof['perm_level']
+            player.name = pprof['name']
+
+            player.hp = pprof['hp']
+            player.mp = pprof['mp']
+            player.hunger = pprof['hunger']
+            player.status_effects = pprof['status_effects']
+
+            player.money = pprof['money']
+
+            player.xp = pprof['xp']
+            player.level = pprof['level']
+
+            game_menu()
 
         else:
             print("Incorrect password.")
@@ -226,52 +246,66 @@ def create_account():
     clearscr()
     header("Account Creation")
     username = prompt("New Username:")
-    password = prompt("Password:")
 
-    command(f"cp {filePath}/Configs/Templates/player-template.yml {filePath}/Profiles/")
-    command(f"mv {filePath}/Profiles/player-template.yml {filePath}/Profiles/{username}.yml")
+    profile_dir = f"{filePath}/Profiles"
 
-    profile = yaml.load(f"{filePath}/Profiles/{username}.yml")
-    profile['player']['name'] = username
-    profile['settings']['password'] = password
-
-    yaml.dump(profile)
-
-    global player
-    player = Player
-    player.name = username
-
-
-    print("Account created!")
-
-    ans = prompt('\nWould you like to return to the help menu? y/n').lower()
-
-    actions = {
-        'y': main_menu,
-        'yes': main_menu,
-        'n': exit,
-        'no': exit
-    }
-
-    if ans in actions.keys():
-        actions[ans]()
-
+    if f"{username}.yml" in os.listdir(profile_dir):
+        print("Profile exists!")
+        main_menu()
     else:
-        while ans.lower() not in actions.keys():
 
-            ans = prompt('Please enter a valid answer.')
-            if ans in actions.keys():
-                actions[ans]()
+        password = prompt("Password:")
+
+        global profilepath
+        profilepath = f"{filePath}/Profiles/{username}.yml"
+
+        command(f"cp {filePath}/Configs/Templates/player-template.yml {filePath}/Profiles/")
+        command(f"mv {filePath}/Profiles/player-template.yml {profilepath}")
+
+        with open(profilepath, 'r') as filed:
+            profile = yaml.load(filed)
+
+        profile['player']['name'] = username
+        profile['player']['settings']['password'] = password
+
+        with open(profilepath, "w", encoding='utf-8') as filed2:
+            yaml.dump(profile, filed)
+
+        global player
+        player = Player
+        player.name = username
 
 
-def game_menu(player_account):
+        print("Account created!")
+
+        ans = prompt('\nWould you like to return to the help menu? y/n').lower()
+
+        actions = {
+            'y': main_menu,
+            'yes': main_menu,
+            'n': exit,
+            'no': exit
+        }
+
+        if ans in actions.keys():
+            actions[ans]()
+
+        else:
+            while ans.lower() not in actions.keys():
+
+                ans = prompt('Please enter a valid answer.')
+                if ans in actions.keys():
+                    actions[ans]()
+
+
+def game_menu():
     os.system("clear")
     header("Final Realm")
     print()
     print("Stats:")
-    print(f"User: {player_account.name}")
-    print(f"Balance: {player_account.money}")
-    print(f"HP: {player_account.hp}")
+    print(f"User: {player.name}")
+    print(f"Balance: {player.money}")
+    print(f"HP: {player.hp}")
     print("\n\n\n")
     print("1. Wander the Wild\n")
     print("2. Skill Plot\n")
@@ -284,38 +318,33 @@ def game_menu(player_account):
     print("9. Quest Hall")
     print("10. The Stronghold")
     print("\n\n\n\n\n")
-    if player_account.perm_level > 0:
-        print("99. Admin Console")
     print("100. Settings")
     print("101. Logout")
-
-    options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 99, 100, 101]
 
     ans = str(prompt("Choose an option"))
 
     menus = {
-        '1': wild(),
-        '2': skill_plot(),
-        '3': trading_post(),
-        '4': armor_shop(),
-        '5': weapons_shop(),
-        '6': legend_store(),
-        '7': max_shop(),
-        '8': bank(),
-        '9': quest_hall(),
-        '10': stronghold(),
-        '99': admin_console(),
-        '100': settings(),
-        '101': main_menu()
+        '1': wild,
+        '2': skill_plot,
+        '3': trading_post,
+        '4': armor_shop,
+        '5': weapons_shop,
+        '6': legend_store,
+        '7': max_shop,
+        '8': bank,
+        '9': quest_hall,
+        '10': stronghold,
+        '100': settings,
+        '101': main_menu
     }
 
-    if ans in options:
-        menus.get(ans, default='1')
+    if ans in menus.keys():
+        menus[ans]()
     else:
-        while ans not in options:
+        while ans not in menus.keys():
             ans = prompt("Invalid choice. Choose an option")
-            if ans in options:
-                menus.get(ans, default='1')
+            if ans in menus.keys():
+                menus[ans]()
 
 
 def wild():
@@ -355,10 +384,6 @@ def quest_hall():
 
 
 def stronghold():
-    pass
-
-
-def admin_console():
     pass
 
 

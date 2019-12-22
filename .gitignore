@@ -12,6 +12,9 @@ venv/
 __pycache__/
 */__pycache__/
 
+# Profiles
+src/Profiles/*
+
 # Snap Package YAML Config
 snap/
 
