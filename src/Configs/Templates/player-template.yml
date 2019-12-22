@@ -15,40 +15,11 @@ player:
   monsters_defeated: 0  # For use with Quest Hall
   stronghold_defeats: 0  # For use with Quest Hall
 
-####################### Status Effects #######################
-
-  status_effects:
-    # Negative Effects
-    nausea:
-      active: False
-      damage: 5  # Damage dealt per round
-
-    poison:
-      active: False
-      damage: 10  # Damage dealt per round
-
-    necromancy:
-      active: False
-      damage: 30  # Damage dealt per round
-
-    # Positive Effects
-    rehydration:
-      active: False
-      newhp: 5  # Damage dealt per round
-
-    healing:
-      active: False
-      newhp: 10  # Damage dealt per round
-
-    resurrection:
-      active: False
-      newhp: 30  # Damage dealt per round
-
 ####################### Equipment #######################
 
   armor:
     name: 'wooden' # Name
-    type: 'basic'  # Basic (wood), Normal, Legendary
+    typeof: 'basic'  # Basic (wood), Normal, Legendary
     resistance: 10  # How much damage is mitigated per round
     durability: 100  # Maximum wear the armor can take
     wear: 0  # How much wear the armor has
@@ -56,7 +27,7 @@ player:
 
   weapon:
     name: 'wooden'
-    type: 'basic'  # Basic (bronze), Normal, Legendary
+    typeof: 'basic'  # Basic (bronze), Normal, Legendary
     sharpness: 30  # Maximum damage that can be dealt each round
     durability: 100  # Maximum wear the weapon can take
     wear: 0  # How much wear the weapon has
@@ -67,47 +38,32 @@ player:
   inventory:
     # Skill Plot Items
     supplies:
-      bait:  # Fishing
-        quantity: 0
+      bait: 0  # Fishing
 
-      uncooked-fish:  # Fishing
-        quantity: 0
+      uncooked-fish: 0  # Fishing
 
-      wood:  # Woodcutting
-        quantity: 0
+      wood: 0  # Woodcutting
 
-      ore:  # Mining
-        quantity: 0
+      ore: 0  # Mining
 
-      ingots:  # Smithing
-        quantity: 0
+      ingots: 0  # Smithing
 
     food:
       # Includes quantity and hunger as attributes
-      cooked-fish: # Cooked in skill plot
-        quantity: 0
-        hunger: 10  # How much hunger is restored per item consumed
+      cooked-fish: 0  # Cooked in skill plot, restores 10 hunger
 
-      rations:
-        quantity: 0
-        hunger: 30  # How much hunger is restored per item consumed
+      rations: 0  # 30 hunger
 
-      steak:
-        quantity: 0
-        hunger: 50  # How much hunger is restored per item consumed
+      steak: 0   # 50 hunger
 
     drops:
-      fur:
-        quantity: 0
+      fur: 0
 
-      horns:
-        quantity: 0
+      horns: 0
 
-      crystal:
-        quantity: 0
+      crystal: 0
 
-      orbs:
-        quantity: 0
+      orbs: 0
 
 ####################### Skill Plots #######################
 
@@ -137,57 +93,35 @@ player:
   quests:
 
     monsters: # Number of monsters defeated
-      one-hundred:
-        completed: False
+      one-hundred: False
 
-      two-hundred:
-        completed: False
+      two-hundred: False
 
     levels: # Reached level #
-      ten:
-        completed: False
+      ten: False
 
-      thirty:
-        completed: False
+      thirty: False
 
-      fifty:
-        completed: False
+      fifty: False
 
     stronghold: # Whether the stronghold been defeated a certain number of times
-      defeated-one:
-        completed: False
+      defeated-one: False
 
-      defeated-five:
-        completed: False
+      defeated-five: False
 
 
 ####################### Bank #######################
 
-  bank:
-    one:
-      empty: True
-      money: 0
-      limit: 1000000  # $1M
+  bank:  # Limit on all vaults is $1M.
+    one: 0
 
-    two:
-      empty: True
-      money: 0
-      limit: 1000000  # $1m
+    two: 0
 
-    three:
-      empty: True
-      money: 0
-      limit: 1000000  # $1m
+    three: 0
 
-    four:
-      empty: True
-      money: 0
-      limit: 1000000  # $1m
+    four: 0
 
-    five:
-      empty: True
-      money: 0
-      limit: 1000000  # $1m
+    five: 0
 
 ####################### Settings #######################
 

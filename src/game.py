@@ -19,16 +19,89 @@ class Player:
 
         self.hp = 100
         self.mp = 0
-        self.status_effect = ""
 
         self.xp = 0
         self.level = 1
 
         self.money = 0
 
-        self.armor = ""
-        self.weapon = ""
-        self.inventory = []
+        self.monsters_defeated = 0
+        self.stronghold_defeats = 0
+
+        self.armor = {'name': "wooden", 'typeof': "basic", 'resistance': 10, 'durability': 100,
+        'wear': 0, 'broken': False}
+        self.weapon = {'name': "wooden", 'typeof': "basic", 'sharpness': 30, 'durability': 100,
+        'wear': 0, 'broken': False}
+
+        self.inventory = {
+            'supplies': {
+                'bait': 0,
+                'uncooked-fish': 0,
+                'wood': 0,
+                'ore': 0,
+                'ingots': 0
+            },
+            
+            'food': {
+                'cooked-fish': 0,
+                'rations': 0,
+                'steak': 0
+            },
+
+            'drops': {
+                'fur': 0,
+                'horns': 0,
+                'crystal': 0,
+                'orbs': 0
+            }
+        }
+
+        self.skills = {
+            'woodcutting': {
+                'level': 0,
+                'xp': 0
+            },
+            'fishing': {
+                'level': 0,
+                'xp': 0
+            },
+            'mining': {
+                'level': 0,
+                'xp': 0
+            },
+            'smithing': {
+                'level': 0,
+                'xp': 0
+            },
+            'thieving': {
+                'level': 0,
+                'xp': 0
+            }
+        }
+
+        self.quests = {
+            'monsters': {
+                'one-hundred': False,
+                'two-hundred': False
+            },
+            'levels': {
+                'ten': False,
+                'thirty': False,
+                'fifty': False
+            },
+            'stronghold': {
+                'defeated-one': False,
+                'defeated-five': False
+            }
+        }
+
+        self.bank = {
+            'one': 0,
+            'two': 0,
+            'three': 0,
+            'four': 0,
+            'five': 0
+        }
 
 class NPC:
     def __init__(self):
@@ -99,6 +172,8 @@ class Item:
 
 #################################### MAIN MENU ####################################
 
+global player
+player = Player()
 
 def main_menu():
     clearscr()
@@ -180,22 +255,8 @@ def login_menu():
             profile = yaml.load(fd)
 
         if password == profile['player']['settings']['password']:
-            global player
-            player = Player
-            pprof = profile['player']
 
-            player.perm_level = pprof['perm_level']
-            player.name = pprof['name']
-
-            player.hp = pprof['hp']
-            player.mp = pprof['mp']
-            player.hunger = pprof['hunger']
-            player.status_effects = pprof['status_effects']
-
-            player.money = pprof['money']
-
-            player.xp = pprof['xp']
-            player.level = pprof['level']
+            load_account()
 
             game_menu()
 
@@ -271,10 +332,6 @@ def create_account():
         with open(profilepath, 'w') as filed:
             yaml.dump(profile, filed)
 
-        global player
-        player = Player
-        player.name = username
-
 
         print("Account created!")
 
@@ -339,7 +396,7 @@ def game_menu():
         '9': quest_hall,
         '10': stronghold,
         '100': settings,
-        '101': main_menu
+        '101': logout
     }
 
     if ans in menus.keys():
@@ -351,43 +408,43 @@ def game_menu():
                 menus[ans]()
 
 
-def wild():
+def wild():  # To be developed
     pass
 
 
-def skill_plot():
+def skill_plot():  # To be developed
     pass
 
 
-def trading_post():
+def trading_post():  # To be developed
     pass
 
 
-def armor_shop():
+def armor_shop():  # To be developed
     pass
 
 
-def weapons_shop():
+def weapons_shop():  # To be developed
     pass
 
 
-def legend_store():
+def legend_store():  # To be developed
     pass
 
 
-def max_shop():
+def max_shop():  # To be developed
     pass
 
 
-def bank():
+def bank():  # To be developed
     pass
 
 
-def quest_hall():
+def quest_hall():  # To be developed
     pass
 
 
-def stronghold():
+def stronghold():  # To be developed
     pass
 
 
@@ -441,11 +498,222 @@ def delete_account_prompt():
     else:
         game_menu()
 
+def logout():
+
+    save_account()
+    main_menu()
+
 #################################### FUNCTIONS ####################################
 
 clearscr = lambda: os.system('clear')
 command = lambda commander: os.system(f"{commander}")
 prompt = lambda prompter: str(input(f"{prompter}\n\n> "))
+
+def save_account():
+
+    with open(f"{profile_dir}/{user_file}", "r") as f:
+
+        prof = yaml.load(f)
+
+    setting = prof['player']
+
+    armor = setting['armor']
+    weapon = setting['weapon']
+
+    inventory = setting['inventory']
+    supplies = inventory['supplies']
+    food = inventory['food']
+    drops = inventory['drops']
+
+    skill = setting['skills']
+    woodcutting = skill['woodcutting']
+    fishing = skill['fishing']
+    mining = skill['mining']
+    smithing = skill['smithing']
+    thieving = skill['thieving']
+
+    quests = setting['quests']
+    monsters = quests['monsters']
+    levels = quests['levels']
+    stronghold = quests['stronghold']
+
+    bank = setting['bank']
+
+    ######################################################
+    setting['money'] = player.money
+    
+    setting['level'] = player.level
+    setting['xp'] = player.xp
+    
+    setting['hp'] = player.hp
+    setting['hunger'] = player.hunger
+    setting['mp'] = player.mp
+    
+    setting['monsters_defeated'] = player.monsters_defeated
+    setting['stronghold_defeats'] = player.stronghold_defeats
+
+    armor['name'] = player.armor['name']
+    armor['typeof'] = player.armor['typeof']
+    armor['resistance'] = player.armor['resistance']
+    armor['durability'] = player.armor['durability']
+    armor['wear'] = player.armor['wear']
+    armor['broken'] = player.armor['broken']
+
+    weapon['name'] = player.weapon['name']
+    weapon['typeof'] = player.weapon['typeof']
+    weapon['sharpness'] = player.weapon['sharpness']
+    weapon['durability'] = player.weapon['durability']
+    weapon['wear'] = player.weapon['wear']
+    weapon['broken'] = player.weapon['broken']
+
+    supplies['bait'] = player.inventory['supplies']['bait']
+    supplies['uncooked-fish'] = player.inventory['supplies']['uncooked-fish']
+    supplies['wood'] = player.inventory['supplies']['wood']
+    supplies['ore'] = player.inventory['supplies']['ore']
+    supplies['ingots'] = player.inventory['supplies']['ingots']
+
+    food['cooked-fish'] = player.inventory['food']['cooked-fish']
+    food['rations'] = player.inventory['food']['rations']
+    food['steak'] = player.inventory['food']['steak']
+
+    drops['fur'] = player.inventory['drops']['fur']
+    drops['horns'] = player.inventory['drops']['horns']
+    drops['crystal'] = player.inventory['drops']['crystal']
+    drops['orbs'] = player.inventory['drops']['orbs']
+
+    woodcutting['level'] = player.skills['woodcutting']['level']  # Woodcutting
+    woodcutting['xp'] = player.skills['woodcutting']['xp']
+    fishing['level'] = player.skills['fishing']['level']  # Fishing
+    fishing['xp'] = player.skills['fishing']['xp']
+    mining['level'] = player.skills['mining']['level']  # Mining
+    mining['xp'] = player.skills['mining']['xp']
+    smithing['level'] = player.skills['smithing']['level']  # Smithing
+    smithing['xp'] = player.skills['smithing']['xp']
+    thieving['level'] = player.skills['thieving']['level']  # Thieving
+    thieving['xp'] = player.skills['thieving']['xp']
+
+    monsters['one-hundred'] = player.quests['monsters']['one-hundred']
+    monsters['two-hundred'] = player.quests['monsters']['two-hundred']
+
+    levels['ten'] = player.quests['levels']['ten']
+    levels['thirty'] = player.quests['levels']['thirty']
+    levels['fifty'] = player.quests['levels']['fifty']
+
+    stronghold['defeated-one'] = player.quests['stronghold']['defeated-one']
+    stronghold['defeated-five'] = player.quests['stronghold']['defeated-five']
+
+    bank['one'] = player.bank['one']
+    bank['two'] = player.bank['two']
+    bank['three'] = player.bank['three']
+    bank['four'] = player.bank['four']
+    bank['five'] = player.bank['five']
+
+    with open(f"{profile_dir}/{user_file}", 'w') as f:
+        yaml.dump(prof, f)
+
+    ######################################################
+
+def load_account():
+
+    with open(f"{profile_dir}/{user_file}", "r") as f:
+
+        prof = yaml.load(f)
+
+    setting = prof['player']
+
+    armor = setting['armor']
+    weapon = setting['weapon']
+
+    inventory = setting['inventory']
+    supplies = inventory['supplies']
+    food = inventory['food']
+    drops = inventory['drops']
+
+    skill = setting['skills']
+    woodcutting = skill['woodcutting']
+    fishing = skill['fishing']
+    mining = skill['mining']
+    smithing = skill['smithing']
+    thieving = skill['thieving']
+
+    quests = setting['quests']
+    monsters = quests['monsters']
+    levels = quests['levels']
+    stronghold = quests['stronghold']
+
+    bank = setting['bank']
+
+    ######################################################
+    player.name = setting['name']
+    player.money = setting['money']
+    
+    player.level = setting['level']
+    player.xp = setting['xp']
+    
+    player.hp = setting['hp']
+    player.hunger = setting['hunger']
+    player.mp = setting['mp']
+    
+    player.monsters_defeated = setting['monsters_defeated']
+    player.stronghold_defeats = setting['stronghold_defeats']
+
+    player.armor['name'] = armor['name']
+    player.armor['typeof'] = armor['typeof']
+    player.armor['resistance'] = armor['resistance']
+    player.armor['durability'] = armor['durability']
+    player.armor['wear'] = armor['wear']
+    player.armor['broken'] = armor['broken']
+
+    player.weapon['name'] = weapon['name']
+    player.weapon['typeof'] = weapon['typeof']
+    player.weapon['sharpness'] = weapon['sharpness']
+    player.weapon['durability'] = weapon['durability']
+    player.weapon['wear'] = weapon['wear']
+    player.weapon['broken'] = weapon['broken']
+
+    player.inventory['supplies']['bait'] = supplies['bait']
+    player.inventory['supplies']['uncooked-fish'] = supplies['uncooked-fish']
+    player.inventory['supplies']['wood'] = supplies['wood']
+    player.inventory['supplies']['ore'] = supplies['ore']
+    player.inventory['supplies']['ingots'] = supplies['ingots']
+
+    player.inventory['food']['cooked-fish'] = food['cooked-fish']
+    food['rations'] = player.inventory['food']['rations']
+    food['steak'] = player.inventory['food']['steak']
+
+    player.inventory['drops']['fur'] = drops['fur']
+    player.inventory['drops']['horns'] = drops['horns']
+    player.inventory['drops']['crystal'] = drops['crystal']
+    player.inventory['drops']['orbs'] = drops['orbs']
+
+    player.skills['woodcutting']['level'] = woodcutting['level']  # Woodcutting
+    player.skills['woodcutting']['xp'] = woodcutting['xp']
+    player.skills['fishing']['level'] = fishing['level']  # Fishing
+    player.skills['fishing']['xp'] = fishing['xp']
+    player.skills['mining']['level'] = mining['level']  # Mining
+    player.skills['mining']['xp'] = mining['xp']
+    player.skills['smithing']['level'] = smithing['level']  # Smithing
+    player.skills['smithing']['xp'] = smithing['xp']
+    player.skills['thieving']['level'] = thieving['level']  # Thieving
+    player.skills['thieving']['xp'] = thieving['xp']
+
+    player.quests['monsters']['one-hundred'] = monsters['one-hundred']
+    player.quests['monsters']['two-hundred'] = monsters['two-hundred']
+
+    player.quests['levels']['ten'] = levels['ten']
+    player.quests['levels']['thirty'] = levels['thirty']
+    player.quests['levels']['fifty'] = levels['fifty']
+
+    player.quests['stronghold']['defeated-one'] = stronghold['defeated-one']
+    player.quests['stronghold']['defeated-five'] = stronghold['defeated-five']
+
+    player.bank['one'] = bank['one']
+    player.bank['two'] = bank['two']
+    player.bank['three'] = bank['three']
+    player.bank['four'] = bank['four']
+    player.bank['five'] = bank['five']
+
+    ######################################################
 
 def header(title):  # Draws a border around the specified title
 
