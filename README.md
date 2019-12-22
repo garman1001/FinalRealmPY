@@ -47,9 +47,9 @@ Keep in mind, if you are not using a point release, then parts of the game might
 # Checklist
 
 - [x] Accounts
-- [x] Login
-- [x] Create
-- [x] Delete
+    - [x] Login
+    - [x] Create
+    - [x] Delete
 
 - [ ] Combat
     - [ ] Item use (food, pots)
