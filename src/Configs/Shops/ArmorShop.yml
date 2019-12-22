@@ -1,7 +1,7 @@
 ####################### Basic Info #######################
 
 shop:
-  name: ''
+  name: 'Armor Shop'
   open: True  # Whether the store can be accessed
   allow_sell: False  # Whether the store allows a player to sell items
 

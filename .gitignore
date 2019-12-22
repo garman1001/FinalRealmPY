@@ -1,18 +1,18 @@
 # IDEA
 .idea/
 
+# VS Code
+.vscode/
+
+# Git and VENV
 .git/
 venv/
 
 # Pycache
 __pycache__/
-Assets/__pycache__/
-Assets/Classes/__pycache__/
-Assets/Regions/__pycache__/
-Assets/Shops/__pycache__/
-Profiles/__pycache__/
+*/__pycache__/
 
-# VS Code
-.vscode/
+# Snap Package YAML Config
+snap/
 
-snapcraft.yml
+Binaries/

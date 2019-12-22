@@ -10,3 +10,6 @@ ruamel-yaml = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+game="python3 src/game.py"
