@@ -2,7 +2,6 @@
 # Roy Conn
 
 import os
-import sys
 from ruamel.yaml import YAML
 from pathlib import Path
 
@@ -11,11 +10,8 @@ profile_dir = f"{filePath}/Profiles"
 
 yaml = YAML()
 
-clearscr = lambda: os.system('clear')
-command = lambda commander: os.system(f"{commander}")
-prompt = lambda prompter: str(input(f"{prompter}\n\n> "))
+#################################### CLASSES ####################################
 
-################## CLASSES ##################
 class Player:
     def __init__(self):
         self.name = ""
@@ -101,18 +97,7 @@ class Item:
         self.quantity = 0
 
 
-################## MENUS ##################
-
-
-def header(title):  # Draws a border around the specified title
-
-    length = len(title)
-    string = '#' * length
-    string2 = string + ('#' * 4)
-    whitelength = ' ' * length
-    whitelength2 = f'# {whitelength} #'
-    text = f'# {title} #'
-    print(f"{string2}\n{whitelength2}\n{text}\n{whitelength2}\n{string2}")
+#################################### MAIN MENU ####################################
 
 
 def main_menu():
@@ -150,16 +135,10 @@ def main_menu():
                 actions[ans]()
 
 
-def exit_game():
-
-    clearscr()
-    exit()
-
-
 def help_menu():
     clearscr()
     header("Final Realm | Help")
-    print('- Type in the number option given to perform an action')
+    print('\n- Type in the number option given to perform an action')
     print('- Don\'t die')
     ans = str(prompt('\nWould you like to return to the help menu? y/n').lower())
 
@@ -185,7 +164,7 @@ def login_menu():
 
     clearscr()
     header("Login")
-    username = prompt("Username:")
+    username = prompt("\nUsername:")
 
     profiles = os.listdir(profile_dir)
     global user_file
@@ -194,7 +173,7 @@ def login_menu():
 
     if user_file in profiles:
 
-        password = prompt("Password")
+        password = prompt("\nPassword:")
 
         with open(prof) as fd:
             global profile
@@ -266,7 +245,7 @@ def create_account():
 
     clearscr()
     header("Account Creation")
-    username = prompt("New Username:")
+    username = prompt("\nNew Username:")
 
     profile_dir = f"{filePath}/Profiles"
 
@@ -275,7 +254,7 @@ def create_account():
         main_menu()
     else:
 
-        password = prompt("Password:")
+        password = prompt("\nPassword:")
 
         global profilepath
         profilepath = f"{filePath}/Profiles/{username}.yml"
@@ -317,6 +296,9 @@ def create_account():
                 ans = prompt('Please enter a valid answer.')
                 if ans in actions.keys():
                     actions[ans]()
+
+
+#################################### GAME MENU ####################################
 
 
 def game_menu():
@@ -459,9 +441,30 @@ def delete_account_prompt():
     else:
         game_menu()
 
+#################################### FUNCTIONS ####################################
+
+clearscr = lambda: os.system('clear')
+command = lambda commander: os.system(f"{commander}")
+prompt = lambda prompter: str(input(f"{prompter}\n\n> "))
+
+def header(title):  # Draws a border around the specified title
+
+    length = len(title)
+    string = '#' * length
+    string2 = string + ('#' * 4)
+    whitelength = ' ' * length
+    whitelength2 = f'# {whitelength} #'
+    text = f'# {title} #'
+    print(f"{string2}\n{whitelength2}\n{text}\n{whitelength2}\n{string2}")
+
 def delete_acc():
     os.remove(f"{profile_dir}/{user_file}")
     main_menu()
+
+def exit_game():
+
+    clearscr()
+    exit()
 
 
 try:
