@@ -46,40 +46,40 @@ Keep in mind, if you are not using a point release, then parts of the game might
 
 # Checklist
 
-[x] Accounts
-    [x] Login
-    [x] Create
-    [x] Delete
+- [x] Accounts
+- [x] Login
+- [x] Create
+- [x] Delete
 
-[ ] Combat
-    [ ] Item use (food, pots)
-    [ ] Monster/Bandit Generation
+- [ ] Combat
+    - [ ] Item use (food, pots)
+    - [ ] Monster/Bandit Generation
 
-[ ] Inventory Support
+- [ ] Inventory Support
 
-[ ] Wild
-    [ ] Monster Attacks
-    [ ] Bandit Attacks
-    [ ] Ekaver
-    [ ] Villiages
+- [ ] Wild
+    - [ ] Monster Attacks
+    - [ ] Bandit Attacks
+    - [ ] Ekaver
+    - [ ] Villiages
 
-[ ] Stores
-    [ ] Trading Post
-    [ ] Weapons Shop
-    [ ] Armor Shop
-    [ ] Legends Store
-    [ ] Max's Shop
+- [ ] Stores
+    - [ ] Trading Post
+    - [ ] Weapons Shop
+    - [ ] Armor Shop
+    - [ ] Legends Store
+    - [ ] Max's Shop
 
-[ ] Economy
-    [ ] Skill Plot
-    [ ] Bank
+- [ ] Economy
+    - [ ] Skill Plot
+    - [ ] Bank
 
-[ ] Misc
-    [ ] Stronghold
-    [ ] Smuggler
+- [ ] Misc
+    - [ ] Stronghold
+    - [ ] Smuggler
 
-[ ] Binaries
-    [ ] Snap
-    [ ] Flatpak
-    [ ] DEB
-    [ ] RPM
+- [ ] Binaries
+    - [ ] Snap
+    - [ ] Flatpak
+    - [ ] DEB
+    - [ ] RPM
