@@ -7,8 +7,9 @@ from ruamel.yaml import YAML
 from pathlib import Path
 
 filePath = Path(__file__).parent
+profile_dir = f"{filePath}/Profiles"
 
-yaml = YAML(typ='safe')
+yaml = YAML()
 
 clearscr = lambda: os.system('clear')
 command = lambda commander: os.system(f"{commander}")
@@ -186,13 +187,14 @@ def login_menu():
     header("Login")
     username = prompt("Username:")
 
-    profiles = os.listdir(f"{filePath}/Profiles")
-    f = f"{username}.yml"
-    if f in profiles:
+    profiles = os.listdir(profile_dir)
+    user_file = f"{username}.yml"
+    prof = f"{profile_dir}/{user_file}"
+    if user_file in profiles:
 
         password = prompt("Password")
 
-        with open(f) as fd:
+        with open(prof) as fd:
             global profile
             profile = yaml.load(fd)
 
@@ -268,7 +270,7 @@ def create_account():
         profile['player']['name'] = username
         profile['player']['settings']['password'] = password
 
-        with open(profilepath, "w", encoding='utf-8') as filed2:
+        with open(profilepath, 'w') as filed:
             yaml.dump(profile, filed)
 
         global player
@@ -303,10 +305,10 @@ def game_menu():
     header("Final Realm")
     print()
     print("Stats:")
-    print(f"User: {player.name}")
-    print(f"Balance: {player.money}")
-    print(f"HP: {player.hp}")
-    print("\n\n\n")
+    print(f"- User: {player.name}")
+    print(f"- Balance: {player.money}")
+    print(f"- HP: {player.hp}")
+    print("\n")
     print("1. Wander the Wild\n")
     print("2. Skill Plot\n")
     print("3. Trading Post\n")
@@ -315,11 +317,11 @@ def game_menu():
     print("6. Legend's Store\n")
     print("7. Max's Shop\n")
     print("8. Bank\n")
-    print("9. Quest Hall")
-    print("10. The Stronghold")
-    print("\n\n\n\n\n")
+    print("9. Quest Hall\n")
+    print("10. The Stronghold\n")
+    print("\n")
     print("100. Settings")
-    print("101. Logout")
+    print("101. Logout\n\n")
 
     ans = str(prompt("Choose an option"))
 
