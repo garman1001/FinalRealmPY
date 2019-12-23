@@ -13,7 +13,8 @@ __pycache__/
 */__pycache__/
 
 # Profiles
-src/Profiles/*
+*/roy.yml
+roy.yml
 
 # Snap Package YAML Config
 snap/
