@@ -1,9 +1,0 @@
-####################### Basic Info #######################
-
-shop:
-  name: "Max's Shop"
-  open: False  # Whether the store can be accessed
-  allow_sell: False  # Whether the store allows a player to sell items
-
-####################### Inventory #######################
-  inventory:

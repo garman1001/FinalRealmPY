@@ -161,7 +161,6 @@ class Food:
         self.price = 0
         self.description = ""
         self.restorepoints = 0
-        self.saturation = 0
 
 
 class Item:
@@ -169,7 +168,75 @@ class Item:
         self.name = ''
         self.price = 0
         self.description = ""
-        self.quantity = 0
+
+#################################### ITEMS ####################################
+
+bait = Item()
+bait.name = 'bait'
+bait.price = 1
+bait.description = "Needed to fish."
+
+uncooked-fish = Item()
+uncooked-fish.name = 'Uncooked Fish'
+uncooked-fish.price = 5
+uncooked-fish.description = "Obtained from the skill plot. Can be cooked into food."
+
+wood = Item()
+wood.name = 'Wood'
+wood.price = 5
+wood.description = "Obtained from the skill plot."
+
+ore = Item()
+ore.name = 'Ore'
+ore.price = 10
+ore.description = "Obtained from the skill plot; can be made into ingots."
+
+ingot = Item()
+ingot.name = 'Ingot'
+ingot.price = 30
+ingot.description = "Cooked Ore. Obtained from the skill plot."
+
+# Food #
+
+cooked-fish = Food()
+cooked-fish.name = 'Cooked Fish'
+cooked-fish.price = 10
+cooked-fish.description = "Restores 10 hp."
+cooked-fish.restorepoints = 10
+
+rations = Food()
+rations.name = 'Rations'
+rations.price = 15
+rations.description = "Restores 20 hp"
+rations.restorepoints = 20
+
+steak = Food()
+steak.name = 'Steak'
+steak.price = 30
+steak.description = "Restores 50 hp"
+steak.restorepoints = 50
+
+# Drops #
+
+fur = Item()
+fur.name = 'Fur'
+fur.price = 30
+fur.description = "Dropped from beasts."
+
+horns = Item()
+horns.name = 'Horns'
+horns.price = 40
+horns.description = "Dropped from beasts."
+
+crystal = Item()
+crystal.name = 'Crystal'
+crystal.price = 70
+crystal.description = "Dropped from monsters."
+
+orbs = Item()
+orbs.name = 'Orbs'
+orbs.price = 200
+orbs.description = "Dropped from magical creatures."
 
 
 #################################### MAIN MENU ####################################
@@ -322,7 +389,7 @@ def create_account():
         global profilepath
         profilepath = f"{filePath}/Profiles/{username}.yml"
 
-        command(f"cp {filePath}/Configs/Templates/player-template.yml {filePath}/Profiles/")
+        command(f"cp {filePath}/Profiles/Template/player-template.yml {filePath}/Profiles/")
         command(f"mv {filePath}/Profiles/player-template.yml {profilepath}")
 
         with open(profilepath, 'r') as filed:
@@ -667,7 +734,6 @@ def save_account():
     setting['xp'] = player.xp
     
     setting['hp'] = player.hp
-    setting['hunger'] = player.hunger
     setting['mp'] = player.mp
     
     setting['monsters_defeated'] = player.monsters_defeated
@@ -773,7 +839,6 @@ def load_account():
     player.xp = setting['xp']
     
     player.hp = setting['hp']
-    player.hunger = setting['hunger']
     player.mp = setting['mp']
     
     player.monsters_defeated = setting['monsters_defeated']
